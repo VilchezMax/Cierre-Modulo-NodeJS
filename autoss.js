@@ -31,7 +31,7 @@ let concesionaria = {
     venderAuto: function(patenteBuscada){
         autoAVender = this.buscarAuto(patenteBuscada);
         autoAvender = concesionaria.autos.find(elemento=> {
-            return elemento.patente === "JJH116"
+            return elemento.patente === patenteBuscada
         })
         autoAVender.vendido=true;
         
@@ -52,4 +52,6 @@ let concesionaria = {
        return autos0km;
    }
 }
+
+
 
