@@ -31,7 +31,7 @@ let concesionaria = {
     venderAuto: function(patenteBuscada){
         autoAVender = this.buscarAuto(patenteBuscada);
         autoAvender = concesionaria.autos.find(elemento=> {
-            return elemento.patente === patenteBuscada
+            return elemento.patente === patenteBuscada;
         })
         autoAVender.vendido=true;
         
@@ -47,11 +47,30 @@ let concesionaria = {
    autosNuevos: function(){
        let autos0km = [];
        this.autosParaLaVenta().forEach(element => {
-           element.km<100 ? autos0km.push(element): ""
+           element.km<100 ? autos0km.push(element) : ""
        });
        return autos0km;
-   }
+   },
+
+   listaDeVentas: function(){
+    let arrayVentas = [];
+    arrayVentas = this.autos.filter(auto => auto.vendido==true).map(elemento=>elemento.precio);
+    return arrayVentas;
+   },
+
+   totalDeVentas: function(){
+        let totalVentas = 0;
+        if (this.listaDeVentas() != "" ){
+            totalVentas = this.listaDeVentas().reduce((acum,precio)=>{acum+precio} )
+        }
+        return totalVentas;
+    }
+
+
 }
+
+
+
 
 
 
