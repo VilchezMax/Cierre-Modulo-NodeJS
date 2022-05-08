@@ -85,8 +85,16 @@ let concesionaria = {
             }
         }
         return puede;
+    },
+
+    autosQuePuedeComprar: function(persona){
+        let listaComprables;
+        listaComprables = this.autosParaLaVenta().filter(auto => (this.puedeComprar(auto,persona)==true));
+        return listaComprables;
     }
 }
+
+
 
 
 
