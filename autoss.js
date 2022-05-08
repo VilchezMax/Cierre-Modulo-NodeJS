@@ -1,3 +1,5 @@
+//constructores
+
 function Auto(marca,modelo,color,anio,km,precio,cuotas,patente,vendido){
     this.marca=marca;
     this.modelo=modelo;
@@ -10,6 +12,13 @@ function Auto(marca,modelo,color,anio,km,precio,cuotas,patente,vendido){
     this.vendido=vendido;
 }
 
+function Persona(nombre,capacidadDePagoEnCuotas,capacidadDePagoTotal){
+    this.nombre=nombre;
+    this.capacidadDePagoEnCuotas=capacidadDePagoEnCuotas;
+    this.capacidadDePagoTotal=capacidadDePagoTotal;
+}
+
+var comprador = new Persona("Juan", 30000, 100000000)
 let auto1 = new Auto("Ford","Fiesta","Azul",2019,200,150000,12,"APL123",false);
 let auto2 = new Auto("Toyota","Corolla","Blanco",2019,0,100000,14,"JJH116",false)
 
@@ -20,7 +29,8 @@ let autos = [
 
 let concesionaria = {
 
-    autos : autos, 
+    autos : autos,
+    comprador : comprador, 
     buscarAuto: function(patenteBuscada){
         let autoEncontrado=null;
         this.autos.filter( auto => auto.patente==patenteBuscada ? autoEncontrado=auto : "");
@@ -64,9 +74,18 @@ let concesionaria = {
             totalVentas = this.listaDeVentas().reduce((acum,precio)=>{acum+precio} )
         }
         return totalVentas;
+    },
+
+    puedeComprar: function(auto,persona){
+        let puede=false;
+        let cuotaAuto = auto.precio / auto.cuotas;
+        if (persona.capacidadDePagoEnCuotas >= cuotaAuto){
+           if (persona.capacidadDePagoTotal >= auto.precio){
+                puede = true;
+            }
+        }
+        return puede;
     }
-
-
 }
 
 
